@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ecommerce-linda-cosmeticos",
+  "private_key_id": "b5a4a6905b9cd2320bdcaeac57c45e6979239e33",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCgZ7h+7cFZAUyU\n3AigdnP6e0jy8NUmGgzO6V04vgbD6aUKYksawSIHJWSrkBF4A2ObMWva48ga9QB1\nikMyuGUSADOy4JkOJ74br6qyHz8JDeUr0rEb4A+YOrRGMc0YnU7V35+0CeinJYT8\naLWWjm9n8S428VW0IPEOz0DLKFT/RzItRwlX8tPVYDPcmnuj4eXWBZRZkKY0pz4z\n7qZvWFFsc8tyQEIfx0iN76nUqSWcAC1zBgKFN/UwGgUn3uQyKLxFMTpLKpHoWu1h\nNBZ1iFI2KzUHTqHEcbZIJxsphna3Ki8FE+tGGIWehjO/s3+tRwkPBztpqKWaXv8K\nXvb07OxDAgMBAAECggEAAQCL/8GtLI/1LqMf8x4Gx7DWmfJmkoIItjqqWFJMDL7Y\n1TqNiViy4dYaTa+l9S4aBKb5ZE5dj8ri80rR9G8OQ3v4ndOW8vvNP0F6e2uEHE1e\n6/EOtDWL0Z42DQHF+l3yHnny2kHgs6uFHbt5S2a59snyZdt6IbUv3iMKdAiylXfr\nFarvZQVl5WL8pmxEaUsf115EwJLz3gN/lJLIrFs9T6dnUNpsENvj3m8QUtlIhDiB\nt7mwcDoqJ/BcToA6/OOGlew162gaIoMvqu4CDmelfYgWrNNPP1fjtjRqH2MinkRp\n6WnUR6bjKZXHO5isOdpMQVu5F7/Jo+UgVMbSHDHw2QKBgQDaxug1pDDnvXiOHvIa\n1I4ePWn1yksk2DWbwszZWcl3IjW/a7J2TGcruXP5d2Wc7/eWcY2/xXA3UWignOpu\ntJwewbUeI01TF7jWkWxLYGaOzMRkqa9BB4BXz8J8/ZTIyvScMF0yWmRRH/TiuoFm\n0hZqKkyI7lYyKMPrdfk76ahHNwKBgQC7slvwj1hyp29wngfdgb2jcPDark0UYely\nmeRfpkA2DuJdSOxlhx++kF/YBHKvQrOG0Bl4OXajVjUGfxZDd2SDCvD9M96BMTSP\nVyxlU9ds8rsXfPaoO27eTqGvu5ZkK8FOcNZ0MO5mFD6wy3R7u2Rg3NK63s9BRpxB\nSF7sf1JxVQKBgQCFdJSuNCyJEPF7cLErYMIY/Emo3/Aa17FMBPbFF5poC/xRerbw\npwbAi26NnSHlLBUSNs7LTvt3Izf50f7H7XDW6j871TkUGQJuEWPIT1QAhDTBWylH\nN/Y4msn/SQj7u6KfrHkNgEp1mlLeA/tv53Q46vipBwqZqnhpKBwTSiOW3QKBgBEo\ned0gzX4VrktGNwPZw2M4hNwIyQUO+k8+oDDaOs52R90tOGcDljROcGSH64/38f9l\n8J4b6qt9yvUgEwHx3R9ZlbQf1LxMqjhcSLOumWfdPJsmEkpIvJbX61HsPRBFK7Om\n/wO6IWD1gtGYl7pj5AYyyZTJn3qhINGa8wp9jSTNAoGAd9vXnRPNedr3t/B5iZpO\nOZ8oNtV7gIkP582qbCMyl/8KvcK2CVKtKBi3dxd964sR2mDquATMLNjZp2QhfnBH\n3dUqE0YT5cPwxKAXpcpnrUn8YTcvWouX5mDwHhhaftv7xj7ConWiefp+m4oYWfpm\nBJXVGxzOR3NjGu8Ok/5+Fcc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "id-conta-api-service@ecommerce-linda-cosmeticos.iam.gserviceaccount.com",
+  "client_id": "100033378027299845918",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/id-conta-api-service%40ecommerce-linda-cosmeticos.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
