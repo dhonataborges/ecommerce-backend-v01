@@ -6,7 +6,7 @@ FROM maven:3.8.6-eclipse-temurin-17-slim AS build
 # Definir o diretório de trabalho no contêiner
 WORKDIR /app
 
-# Copiar apenas os arquivos necessários para o build
+# Copiar apenas arquivos necessários para o build
 COPY pom.xml ./
 
 # Baixar dependências do Maven para usar o cache
