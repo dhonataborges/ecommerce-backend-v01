@@ -20,7 +20,7 @@ COPY pom.xml .
 RUN ls -la
 
 # Build da aplicação com Maven
-RUN mvn clean packege -DskipTests
+RUN mvn clean package -DskipTests
 
 # Segunda etapa: Executar a aplicação
 FROM openjdk:17-jdk-slim
