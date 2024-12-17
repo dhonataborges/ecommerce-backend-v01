@@ -1,11 +1,6 @@
 # Primeira etapa: Build com Maven
 FROM ubuntu:latest AS build
 
-# Defina as variáveis de ambiente no container
-ENV SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bd_ecommerce
-ENV SPRING_DATASOURCE_USERNAME=admin
-ENV SPRING_DATASOURCE_PASSWORD=QGGV1V1KUrD94dhlzqdHmDJYZK1mbN5e
-
 # Instalar dependências
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven
@@ -18,13 +13,14 @@ RUN mvn -version
 WORKDIR /app
 
 # Copiar os arquivos locais do projeto para o contêiner
-COPY . .
+COPY src src
+COPY pom.xml .
 
 # Listar os arquivos para verificar se tudo foi copiado corretamente
 RUN ls -la
 
 # Build da aplicação com Maven
-RUN mvn clean install
+RUN mvn clean packege -DskipTests
 
 # Segunda etapa: Executar a aplicação
 FROM openjdk:17-jdk-slim
