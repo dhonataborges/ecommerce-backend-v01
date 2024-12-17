@@ -1,6 +1,11 @@
 # Primeira etapa: Build com Maven
 FROM ubuntu:latest AS build
 
+# Defina as variáveis de ambiente no container
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/ecommerce
+ENV SPRING_DATASOURCE_USERNAME=admin
+ENV SPRING_DATASOURCE_PASSWORD=QGGV1V1KUrD94dhlzqdHmDJYZK1mbN5e
+
 # Instalar dependências
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven
