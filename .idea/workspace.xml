@@ -157,21 +157,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
           <line>109</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
