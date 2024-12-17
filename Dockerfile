@@ -1,23 +1,16 @@
+FROM ubuntu:latest AS build
+
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
+
+RUN apt-get install maven -y
+RUN mvn clean install
+
 FROM openjdk:17-jdk-slim
-
-WORKDIR /app
-
-COPY --from=build /target/*.jar app.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "api.jar"]
+COPY --from=build /target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-
-
-##FROM maven:3.9.8-openjdk-17-jdk as build
-#RUN mkdir -p /app
-#WORKDIR /app
-#ADD . /app
-#RUN mvn package
-
-#FROM eclipse-temurin:17-jdk
-#RUN mkdir -p /app
-#WORKDIR /app
-#COPY target/*.jar /app/ecommerce-backend.jar
-#CMD ["java","-jar","/app/ecommerce-backend.jar"]###
+ENTRYPOINT ["java", "-jar", "app.jar"]
