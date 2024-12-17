@@ -1,27 +1,34 @@
-# First stage: Build with Maven
+# Primeira etapa: Build com Maven
 FROM ubuntu:latest AS build
 
-# Install dependencies
+# Instalar dependências
 RUN apt-get update && \
     apt-get install -y openjdk-17-jdk maven
 
-# Set the working directory in the container
+# Verificar as instalações
+RUN java -version
+RUN mvn -version
+
+# Definir o diretório de trabalho no contêiner
 WORKDIR /app
 
-# Copy the local project files to the container
+# Copiar os arquivos locais do projeto para o contêiner
 COPY . .
 
-# Build the application with Maven
+# Listar os arquivos para verificar se tudo foi copiado corretamente
+RUN ls -la
+
+# Build da aplicação com Maven
 RUN mvn clean install
 
-# Second stage: Run the app
+# Segunda etapa: Executar a aplicação
 FROM openjdk:17-jdk-slim
 
-# Expose the port
+# Expor a porta
 EXPOSE 8080
 
-# Copy the built JAR file from the build stage
+# Copiar o JAR gerado da etapa de build
 COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Run the JAR file when the container starts
+# Executar o JAR quando o contêiner iniciar
 ENTRYPOINT ["java", "-jar", "app.jar"]
