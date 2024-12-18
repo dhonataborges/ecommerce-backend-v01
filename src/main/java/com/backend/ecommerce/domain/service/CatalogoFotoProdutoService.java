@@ -60,6 +60,7 @@ public class CatalogoFotoProdutoService {
         return foto;
     }
 
+    @Transactional
     public FotoProduto buscarOuFalhar(Long produtoId) {
         // Tenta buscar a foto associada ao produto, se não encontrar, lança uma exceção
         return produtoRepository.findFotoById(produtoId)

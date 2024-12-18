@@ -56,6 +56,7 @@ public class EstoqueService {
         }
     }
 
+    @Transactional
     public Estoque buscarOuFalhar(Long estoqueId) {
         return estoqueRepository.findById(estoqueId).orElseThrow(() -> new EstoqueNaoEncontradoException(estoqueId));
     }
@@ -75,6 +76,7 @@ public class EstoqueService {
     }
     * */
 
+    @Transactional
     private void calValorTotalProd(Estoque estoque) {
 
         BigDecimal valorTotalProd = new BigDecimal(estoque.getQtdProd()).multiply(BigDecimal.valueOf(estoque.getValorUnid().doubleValue()));

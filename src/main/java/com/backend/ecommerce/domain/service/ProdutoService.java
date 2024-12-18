@@ -210,6 +210,7 @@ public class ProdutoService {
         }
     }
 
+    @Transactional
     public Produto buscarOuFalhar(Long produtoId) {
         return produtoRepository.findById(produtoId).orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
     }
