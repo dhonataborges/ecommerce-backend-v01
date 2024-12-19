@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32cf0c2d-35c1-48c4-8907-81e657264388" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoFotoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoFotoProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstoqueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstoqueService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FotoStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FotoStorageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/ProdutoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/VendaProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/VendaProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,14 +47,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Alfa System 2024/projeto em produção para amostra/ecommerce-backend-v01/backend&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/Alfa System 2024/projeto em produção para amostra/ecommerce-backend-v01/backend"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources" />

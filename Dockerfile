@@ -27,6 +27,7 @@ FROM openjdk:17-jdk-slim
 
 # Copiar o arquivo de credenciais do Google Drive para dentro do contêiner
 COPY src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json /app/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json
+COPY img/image-generica.jpeg /app/img/image-generica.jpeg
 
 # Expor a porta
 EXPOSE 8080
