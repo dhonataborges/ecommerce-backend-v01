@@ -65,12 +65,10 @@ public class VendaProdutoService {
         }
     }
 
-    @Transactional
     public VendaProduto buscarOuFalhar(Long vendaProdutoId) {
         return vendaProdutoRepository.findById(vendaProdutoId).orElseThrow(() -> new VendaProdutoNaoEncontradoException(vendaProdutoId));
     }
 
-    @Transactional
     private void calcValorParcela(VendaProduto vendaProduto) {
 
         DecimalFormat formatResult = new DecimalFormat("0.00");

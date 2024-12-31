@@ -3,7 +3,6 @@ package com.backend.ecommerce.domain.service;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.UUID;
@@ -26,7 +25,6 @@ public interface FotoStorageService {
 
     void remover(String nomeArquivo);
 
-    @Transactional
     default void substituir(String nomeArquivoAntigo, NovaFoto novaFoto) {
         this.armazenar(novaFoto);
 

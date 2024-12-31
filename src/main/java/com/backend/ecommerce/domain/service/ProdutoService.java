@@ -100,7 +100,7 @@ public class ProdutoService {
         // Salva o produto primeiro para garantir que ele tenha um ID atribuído
         Produto cod = produtoRepository.findByCodProd(produto.getCodProd());
 
-        // Verifica se o produto já existe (evitando condição de corrida)
+        // Verifica se o produto já existe
         if (cod != null) {
             throw new NegocioException("Produto com o código " + produto.getCodProd() + " já está cadastrado!");
         }
@@ -123,10 +123,6 @@ public class ProdutoService {
         produto.setFotoProduto(foto);
         return produtoRepository.save(produto);
 
-		/*if (buscaCodProd(produto) != null) {
-			throw new NegocioException(String.format("Produto já está cadastrado!"));
-			//DataIntegrityViolationException("Produto já está cadastrado!");
-		}*/
     }
 
     @Transactional
@@ -210,7 +206,6 @@ public class ProdutoService {
         }
     }
 
-    @Transactional
     public Produto buscarOuFalhar(Long produtoId) {
         return produtoRepository.findById(produtoId).orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
     }
