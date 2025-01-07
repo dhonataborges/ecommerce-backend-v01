@@ -18,6 +18,7 @@ COPY pom.xml .
 
 # Copiar o arquivo de credenciais para o local correto
 COPY src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json
+COPY src/main/resources/bd-commerce-v01-83b1c10551a8.json src/main/resources/bd-commerce-v01-83b1c10551a8.json
 
 # Copiar a imagem generica
 COPY img/image-generica.jpeg img/image-generica.jpeg
@@ -34,8 +35,9 @@ WORKDIR /app
 # Copiar o JAR da primeira etapa para a segunda
 COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
-# Copiar o arquivo de credenciais para o diretório correto na segunda etapa
+# Copiar os arquivos de credenciais para o diretório correto na segunda etapa
 COPY --from=build /app/src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json
+COPY --from=build /app/src/main/resources/bd-commerce-v01-83b1c10551a8.json src/main/resources/bd-commerce-v01-83b1c10551a8.json
 
 # Copiar a imagem generica para o contêiner
 COPY --from=build /app/img/image-generica.jpeg img/image-generica.jpeg
@@ -43,8 +45,8 @@ COPY --from=build /app/img/image-generica.jpeg img/image-generica.jpeg
 # Expor a porta 8080 (se necessário)
 EXPOSE 8080
 
-# Configurar o arquivo de credenciais no ambiente, caso necessário
-ENV GOOGLE_APPLICATION_CREDENTIALS=/app/src/main/resources/ecommerce-linda-cosmeticos-b5a4a6905b9c.json
+# Configurar o arquivo de credenciais no ambiente
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/src/main/resources/bd-commerce-v01-83b1c10551a8.json
 
 # Definir o comando de execução
 ENTRYPOINT ["java", "-jar", "app.jar"]
