@@ -55,4 +55,4 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/app/src/main/resources/bd-commerce-v01-83b1c
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Exibir o IP público fornecido pela plataforma no log
-CMD ["/bin/bash", "-c", "echo 'Public IP: $(curl -s ifconfig.me)' && cloud_sql_proxy -dir=/cloudsql & java -jar app.jar"]
+RUN echo 'Public IP: $(curl -s ifconfig.me)'
