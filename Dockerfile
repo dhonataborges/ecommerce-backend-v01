@@ -1,9 +1,9 @@
 # Etapa 1: Construir a aplicação
 FROM ubuntu:latest AS build
 
-# Atualizar o sistema e instalar o JDK, Maven e curl (para baixar o Cloud SQL Proxy)
+# Atualizar o sistema e instalar o JDK, Maven, curl, e iproute2
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk maven curl
+    apt-get install -y openjdk-17-jdk maven curl iproute2
 
 # Baixar o Cloud SQL Proxy e torná-lo executável
 RUN curl -o /usr/local/bin/cloud_sql_proxy https://storage.googleapis.com/cloudsql-proxy/v1.27.1/cloud_sql_proxy.linux.amd64 && \
@@ -29,6 +29,9 @@ RUN mvn clean package -DskipTests
 # Etapa 2: Criar uma imagem mais leve com apenas o JAR
 FROM openjdk:17-jdk-slim
 
+# Instalar utilitários para obter o IP
+RUN apt-get update && apt-get install -y curl iproute2
+
 # Configurar o diretório de trabalho
 WORKDIR /app
 
@@ -51,5 +54,5 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/app/src/main/resources/bd-commerce-v01-83b1c
 # Definir o comando de execução
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# Exemplo de como iniciar o Cloud SQL Proxy na inicialização do contêiner
-CMD ["/bin/bash", "-c", "cloud_sql_proxy -dir=/cloudsql & java -jar app.jar"]
+# Exibir o IP público fornecido pela plataforma no log
+CMD ["/bin/bash", "-c", "echo 'Public IP: $(curl -s ifconfig.me)' && cloud_sql_proxy -dir=/cloudsql & java -jar app.jar"]
