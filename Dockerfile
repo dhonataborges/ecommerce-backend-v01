@@ -55,4 +55,4 @@ ENV GOOGLE_APPLICATION_CREDENTIALS=/app/src/main/resources/bd-commerce-v01-83b1c
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
 # Exibir o IP público fornecido pela plataforma no log
-RUN echo 'Public IP: $(curl -s ifconfig.me)'
+RUN echo "Public IP: $(curl -s ifconfig.me)"
