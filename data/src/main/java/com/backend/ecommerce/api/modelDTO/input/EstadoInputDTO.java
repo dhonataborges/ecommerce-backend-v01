@@ -1,0 +1,14 @@
+package com.backend.ecommerce.api.modelDTO.input;
+
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class EstadoInputDTO {
+
+    @Column(nullable = false)
+    private String nome;
+
+}

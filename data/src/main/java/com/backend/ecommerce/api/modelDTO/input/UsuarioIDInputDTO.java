@@ -1,0 +1,13 @@
+package com.backend.ecommerce.api.modelDTO.input;
+
+import jakarta.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class UsuarioIDInputDTO {
+
+    private Long id;
+
+}
