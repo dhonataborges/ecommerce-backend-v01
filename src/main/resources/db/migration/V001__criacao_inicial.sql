@@ -1,92 +1,97 @@
+-- Esquema de banco refatorado para facilitar o desenvolvimento de um e-commerce
+-- Nomes simplificados, tabelas otimizadas, e melhores práticas aplicadas
 
+-- ===================== Tabelas de Endereço =====================
+CREATE TABLE tb_estado (
+    id BIGSERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL
+);
 
----------------------------------POSTGREDSQL--------------------------------------------------
+CREATE TABLE tb_cidade (
+    id BIGSERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    estado_id BIGINT REFERENCES tb_estado(id)
+);
 
--- Criação da tabela `tb_produto`
+CREATE TABLE tb_endereco (
+    id BIGSERIAL PRIMARY KEY,
+    nome_dono VARCHAR(100),
+    cep VARCHAR(20),
+    bairro VARCHAR(255),
+    rua VARCHAR(255),
+    numero VARCHAR(50),
+    complemento VARCHAR(255),
+    cidade_id BIGINT REFERENCES tb_cidade(id)
+);
+
+-- ===================== Usuários e Autenticação =====================
+CREATE TABLE tb_usuario (
+    id BIGSERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    permissoes SMALLINT NOT NULL,
+    nome VARCHAR(100),
+    sobrenome VARCHAR(100)
+);
+
+CREATE TABLE tb_telefone (
+    id BIGSERIAL PRIMARY KEY,
+    responsavel VARCHAR(255),
+    numero VARCHAR(20),
+    usuario_id BIGINT REFERENCES tb_usuario(id)
+);
+
+-- ===================== Produtos e Estoque =====================
 CREATE TABLE tb_produto (
-    id BIGSERIAL PRIMARY KEY, -- BIGSERIAL substitui AUTO_INCREMENT
-    cod_prod VARCHAR(6) NOT NULL,
-    nome_prod VARCHAR(60) NOT NULL,
-    descricao_prod VARCHAR(500) NOT NULL,
-    categoria SMALLINT -- PostgreSQL não possui TINYINT, use SMALLINT
+    id BIGSERIAL PRIMARY KEY,
+    codigo VARCHAR(6) UNIQUE NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    descricao VARCHAR(500),
+    categoria SMALLINT,
+    marca VARCHAR(50)
 );
 
--- Criação da tabela `tb_estoque`
-CREATE TABLE tb_estoque (
-    id BIGSERIAL PRIMARY KEY, -- BIGSERIAL substitui AUTO_INCREMENT
-    data_entrada DATE NOT NULL,
-    data_saida DATE,
-    valor_und NUMERIC(38,2) NOT NULL, -- NUMERIC substitui DECIMAL no PostgreSQL
-    qtd_prod INTEGER NOT NULL,
-    valor_total_prod NUMERIC(38,2),
-    produto_id BIGINT,
-    CONSTRAINT fk_produto FOREIGN KEY (produto_id) REFERENCES tb_produto (id)
-);
-
--- Criação da tabela `tb_foto_produto`
+-- Mantida a versão original da tabela de fotos
 CREATE TABLE tb_foto_produto (
-    produto_id BIGINT PRIMARY KEY,
+    produto_id BIGINT,
     nome_arquivo VARCHAR(255),
     descricao VARCHAR(100),
     tamanho BIGINT,
-    content_type VARCHAR(100),
-    CONSTRAINT fk_foto_produto FOREIGN KEY (produto_id) REFERENCES tb_produto (id)
+    content_type VARCHAR(100)
 );
 
--- Criação da tabela `tb_venda_produto`
-CREATE TABLE tb_venda_produto (
-    id BIGSERIAL PRIMARY KEY, -- BIGSERIAL substitui AUTO_INCREMENT
-    desconto_porcento NUMERIC(38,2),
-    num_parcela INTEGER,
-    valor_parcela NUMERIC(38,2),
-    valor_venda NUMERIC(38,2),
-    estoque_id BIGINT,
-    CONSTRAINT fk_venda_estoque FOREIGN KEY (estoque_id) REFERENCES tb_estoque (id)
+CREATE TABLE tb_estoque (
+    id BIGSERIAL PRIMARY KEY,
+    produto_id BIGINT REFERENCES tb_produto(id),
+    data_entrada DATE NOT NULL,
+    data_saida DATE,
+    valor_unitario NUMERIC(10, 2) NOT NULL,
+    quantidade INTEGER NOT NULL,
+    valor_total NUMERIC(10, 2)
 );
 
------------------------------------------------------------------------------------------------
---create table tb_produto (
---id bigint not null auto_increment,
---cod_prod varchar(6) not null,
---nome_prod varchar(60) not null,
---descricao_prod varchar(500) not null,
---categoria tinyint,
---primary key (id)
---) engine=InnoDB default charset=utf8mb4;
+-- ===================== Pedidos =====================
+CREATE TABLE tb_forma_pagamento (
+    id BIGSERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL,
+    descricao VARCHAR(255)
+);
 
---create table tb_estoque (
---id bigint not null auto_increment,
---data_entrada date not null,
---data_saida date,
---valor_und decimal(38,2) not null,
---qtd_prod integer not null,
---valor_total_prod decimal(38,2),
---produto_id bigint, primary key (id)
---) engine=InnoDB default charset=utf8mb4;
+CREATE TABLE tb_pedido (
+    id BIGSERIAL PRIMARY KEY,
+    usuario_id BIGINT REFERENCES tb_usuario(id),
+    endereco_id BIGINT REFERENCES tb_endereco(id),
+    forma_pagamento_id BIGINT REFERENCES tb_forma_pagamento(id),
+    data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) DEFAULT 'PENDENTE',
+    valor_total NUMERIC(10,2)
+);
 
---create table tb_foto_produto (
---produto_id bigint not null,
---nome_arquivo varchar(255),
---descricao varchar(100),
---tamanho bigint,
---content_type varchar(100),
-
---primary key (produto_id)
---) engine=InnoDB default charset=utf8mb4;;
-
---create table tb_venda_produto (
---id bigint not null auto_increment,
---desconto_porcento decimal(38,2),
---num_parcela integer,
---valor_parcela decimal(38,2),
---valor_venda decimal(38,2),
---estoque_id bigint,
-
---primary key (id)
---) engine=InnoDB default charset=utf8mb4;;
-
---alter table tb_estoque add constraint FKsmdpeam53cbq2gjgy42rriaj7 foreign key (produto_id) references tb_produto (id);
-
---alter table tb_foto_produto add constraint FKtgiixjgpc87837iheye2owj4y foreign key (produto_id) references tb_produto (id);
-
---alter table tb_venda_produto add constraint FK384tey69s9h2bnrfw3u1iuhx9 foreign key (estoque_id) references tb_estoque (id);
+CREATE TABLE tb_pedido_item (
+    id BIGSERIAL PRIMARY KEY,
+    pedido_id BIGINT REFERENCES tb_pedido(id),
+    produto_id BIGINT REFERENCES tb_produto(id),
+    quantidade INTEGER NOT NULL,
+    valor_unitario NUMERIC(10,2),
+    valor_total NUMERIC(10,2)
+);

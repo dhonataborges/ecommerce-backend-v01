@@ -8,31 +8,42 @@ import org.springframework.stereotype.Component;
 
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "ecommerce.storage") // Mapeia as propriedades com o prefixo "ecommerce.storage"
+@ConfigurationProperties(prefix = "ecommerce.storage")
+// Essa anotação diz: "Pega tudo do application.properties ou application.yml que começa com 'ecommerce.storage'"
 public class StorageProperties {
 
+    // Propriedades para armazenamento no Google Drive
     private Drive drive = new Drive();
 
+    // Propriedades para armazenamento local
     private Local local = new Local();
 
-    // Classe para propriedades do armazenamento Local
+    // ============================
+    // Armazenamento local (no disco da máquina)
+    // ============================
     @Getter
     @Setter
     public class Local {
+        // Caminho para onde as fotos serão salvas localmente
         private Path diretorioFotos;
     }
 
-    // Classe para propriedades do Google Drive
+    // ============================
+    // Armazenamento no Google Drive
+    // ============================
     @Getter
     @Setter
     public class Drive {
-        private String credentialsPath;  // Caminho do arquivo JSON de credenciais
-        private String applicationName;  // Nome da aplicação
-        private String diretorioFotos;   // Diretório de fotos no Google Drive
-    }
+        // Caminho do arquivo JSON com as credenciais do Google (gerado na conta de serviço)
+        private String credentialsPath;
 
+        // Nome da aplicação que será mostrada nas requisições da API
+        private String applicationName;
+
+        // Caminho ou pasta no Google Drive onde as fotos vão ser salvas
+        private String diretorioFotos;
+    }
 }

@@ -1,3 +1,4 @@
+/*
 package com.backend.ecommerce.api.controller;
 
 import com.backend.ecommerce.api.assemblerDTO.FotoProdutoModelDisassemblerDTO;
@@ -102,3 +103,4 @@ public class ProdutoController {
 	}
 
 }
+*/

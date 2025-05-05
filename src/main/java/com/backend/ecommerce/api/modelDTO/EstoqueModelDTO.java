@@ -16,9 +16,9 @@ public class EstoqueModelDTO {
     private ProdutoModelDTO produto;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
-    private BigDecimal valorUnid;
-    private Integer qtdProd;
-    private BigDecimal valorTotalProd;
+    private BigDecimal valorUnitario;
+    private Integer quantidade;
+    private BigDecimal valorTotal;
 
 }
 

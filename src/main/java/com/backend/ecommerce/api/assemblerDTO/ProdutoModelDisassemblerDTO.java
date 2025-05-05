@@ -2,46 +2,34 @@ package com.backend.ecommerce.api.assemblerDTO;
 
 
 import com.backend.ecommerce.api.modelDTO.input.ProdutoInputDTO;
-import com.backend.ecommerce.domain.model.Categoria;
+import com.backend.ecommerce.domain.model.enuns.Categoria;
 import com.backend.ecommerce.domain.model.Produto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 @Component
 public class ProdutoModelDisassemblerDTO {
 
     @Autowired
-    private ModelMapper modelMapper;
+    private ModelMapper modelMapper; // Utiliza o ModelMapper para mapear dados entre objetos DTO e entidades.
 
-    //Esse metódo é responsavel por pegar uma objeto ProdutoInputDTO e convertelo para um objeto tipo Produto.
-    //Aqui está sendo usado uma biblioteca por nome modelMapper ela ajuda a reduzir o tamanho do codigo.
-
+    // Este método converte um ProdutoInputDTO em uma entidade Produto.
+    // O objetivo é facilitar a transformação de um objeto de entrada (DTO) para uma entidade de domínio (Produto).
     public Produto toDomainObject(ProdutoInputDTO produtoInput) {
 
+        Produto produto = new Produto(); // Cria uma nova instância de Produto, que será preenchida com os dados do DTO.
 
-        Produto produto = new Produto();
+        // Mapeia cada campo do ProdutoInputDTO para o respectivo campo do Produto.
+        produto.setCodigo(produtoInput.getCodProd()); // Atribui o código do produto.
+        produto.setNome(produtoInput.getNomeProd());  // Atribui o nome do produto.
+        produto.setMarca(produtoInput.getMarca());    // Atribui a marca do produto.
+        produto.setDescricao(produtoInput.getDescricaoProduto()); // Atribui a descrição do produto.
 
-       /* // Verifica se a categoria não é nula antes de acessar getCodCategoria
-        if (produto.getCategoria() != null) {
-            produtoInput.setCategoria(produto.getCategoria().getCodCategoria());
-        } else {
-            // Define a categoria como um valor padrão caso seja nula
-            Categoria categoria = (produto.getCategoria() != null) ? produto.getCategoria() : Categoria.GENERICO;
-            produtoInput.setCategoria(categoria.getCodCategoria());
-        }
-*/
-        produto.setCodProd(produtoInput.getCodProd());
-        produto.setNomeProd(produtoInput.getNomeProd());
-        produto.setDescricaoProd(produtoInput.getDescricao());
+        // Converte o código da categoria para o tipo Categoria usando o método estático toEnum.
+        // Esse método transforma o código num valor enum, garantindo que a categoria esteja sempre validada.
         produto.setCategoria(Categoria.toEnum(produtoInput.getCategoria()));
 
-        return produto;
+        return produto; // Retorna o objeto Produto preenchido.
 
-      /*FotoProduto foto = new FotoProduto();
-
-        return modelMapper.map(produtoInput, Produto.class);*/
     }
-
-
 }

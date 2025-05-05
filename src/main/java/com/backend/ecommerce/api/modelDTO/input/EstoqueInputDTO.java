@@ -15,14 +15,11 @@ public class EstoqueInputDTO {
 
     private ProdutoIDInputDTO produto;
 
-    @Column(name = "data_entrada")
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dataEntrada = LocalDate.now();
 
     @PositiveOrZero
-    @Column(name = "valor_und")
-    private BigDecimal valorUnid;
+    private BigDecimal valorUnitario;
 
-    @Column(name = "qtd_prod")
-    private Integer qtdProd;
+    private Integer quantidade;
 }

@@ -4,7 +4,131 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32cf0c2d-35c1-48c4-8907-81e657264388" name="Changes" comment="" />
+    <list default="true" id="32cf0c2d-35c1-48c4-8907-81e657264388" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/CatalogoProdutoNaoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/EstoqueNaoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/ProdutoNaoEncontradoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/TipoProdutoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CatalogoProdutoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CatalogoProdutoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CatalogoProdutoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CatalogoProdutoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CidadeModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CidadeModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CidadeModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/CidadeModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EnderecoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EnderecoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EnderecoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EnderecoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstadoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstadoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstadoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstadoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueDoPedidoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueDoPedidoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/EstoqueModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FormaPagamentoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FormaPagamentoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FormaPagamentoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FormaPagamentoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FotoProdutoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FotoProdutoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FotoProdutoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/FotoProdutoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PagamentoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PagamentoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PagamentoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PagamentoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoItemModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoItemModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoItemModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoItemModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/PedidoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoDoPedidoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoDoPedidoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/ProdutoModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/TelefoneModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/TelefoneModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/TelefoneModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/TelefoneModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/UsuarioModelAssemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/UsuarioModelAssemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/UsuarioModelDisassemblerDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/assemblerDTO/UsuarioModelDisassemblerDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/CatalogoProdutoAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/CatalogoProdutoAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/CidadeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/CidadeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/ClienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EnderecoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EnderecoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EstadoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EstadoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EstoqueAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/EstoqueAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/FormaPagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/FormaPagamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/FotoProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/FotoProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PagamentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PagamentoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PedidoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PedidoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PedidoItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/PedidoItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/ProdutoAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/ProdutoAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/controller/VendaProdutoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/exeptionHandler/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/api/exeptionHandler/ApiExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/ModelMapperConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/ModelMapperConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/ProdutoModelDTOConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/ProdutoModelDTOConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/security/crypto/CriptografiaUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/security/crypto/CriptografiaUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/storege/GoogleDriveConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/storege/GoogleDriveConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/storege/StorageProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/storege/StorageProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileContentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileContentType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileContentTypeValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileContentTypeValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileSizeValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/FileSizeValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/Multiplo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/Multiplo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/MultiploValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/MultiploValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/ValidationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/core/validation/ValidationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/CatalogoProdutoException/CatalogoProdutoNaoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/CidadeNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/CidadeNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/ClienteNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/ClienteNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/EnderecoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/EnderecoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/EstadoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/EstadoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/FormaPagamentoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/FormaPagamentoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/FotoProdutoNaoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/FotoProdutoNaoEncontradaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/NegocioException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/NegocioException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PagamentoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PagamentoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PedidoItemNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PedidoItemNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PedidoNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/PedidoNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/TelefoneNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/TelefoneNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/UsuarioNaoEncontradoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/UsuarioNaoEncontradoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeDuplicadaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeDuplicadaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeEmUsoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeEmUsoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeNaoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/entidadeException/EntidadeNaoEncontradaException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/estoqueException/EstoqueNaoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/produtoException/ProdutoNaoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/exception/tipoProdutoException/TipoProdutoNaoEncontradoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/CatalogoProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/CatalogoProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Cidade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Cidade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosBoleto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosBoleto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosCartao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosCartao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosPix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/DadosPix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Endereco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Endereco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Estado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Estado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Estoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/FormaPagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/FormaPagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/FotoProduto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/FotoProduto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Pagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/PedidoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/PedidoItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Telefone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Telefone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/Permissoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/Permissoes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/StatusPagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/StatusPagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/StatusPedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/model/enuns/StatusPedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/CatalogoProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/CatalogoProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/EnderecoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/EnderecoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/EstoqueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/EstoqueRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/PedidoItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/PedidoItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/PedidoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/PedidoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/ProdutoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/ProdutoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/ProdutoRepositoryQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/ProdutoRepositoryQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoFotoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoFotoProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CatalogoProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CidadeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/CidadeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EnderecoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EnderecoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstadoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstadoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstoqueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/EstoqueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FormaPagamentoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FormaPagamentoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FotoStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/FotoStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PagamentoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PagamentoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PedidoItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PedidoItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PedidoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/PedidoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/ProdutoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/ProdutoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/TelefoneService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/TelefoneService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/LocalFotoStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/LocalFotoStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/StorageException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/StorageException.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,12 +137,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -44,35 +169,116 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "C:/Alfa System 2024/e-commerce-linda-cosmeticos/backend/backend"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Alfa System 2024/e-commerce-linda-cosmeticos/backend/backend/src/test/java/com/backend/ecommerce&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\test\java\com\backend\ecommerce" />
+      <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources\db\migration" />
+      <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources\db\migration_antigo" />
       <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources\db\migration" />
       <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\src\main\resources" />
       <recent name="C:\Alfa System 2024\e-commerce-linda-cosmeticos\backend\backend\img" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.backend.ecommerce.api.controller" />
-      <recent name="com.backend.ecommerce.domain.repository" />
+      <recent name="com.backend.ecommerce.domain.exception" />
+      <recent name="com.backend.ecommerce.domain.service" />
       <recent name="com.backend.ecommerce.api.assemblerDTO" />
-      <recent name="com.backend.ecommerce.api.modelDTO" />
+      <recent name="com.backend.ecommerce.domain.repository" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ecommerce">
+    <configuration name="TesteCriptografia" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.core.security.crypto.TesteCriptografia" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.ecommerce.core.security.crypto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ecommerce" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.EcommerceApplication" />
       <module name="backend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PagamentoModelDisassemblerDTOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.ecommerce.api.assemblerDTO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.backend.ecommerce.api.assemblerDTO" />
+      <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.api.assemblerDTO.PagamentoModelDisassemblerDTOTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PagamentoModelDisassemblerDTOTest.deveCriptografarDadosDoCartao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.ecommerce.api.assemblerDTO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.backend.ecommerce.api.assemblerDTO" />
+      <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.api.assemblerDTO.PagamentoModelDisassemblerDTOTest" />
+      <option name="METHOD_NAME" value="deveCriptografarDadosDoCartao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PagamentoModelDisassemblerDTOTest.deveMapearDadosDoBoletoCorretamente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.ecommerce.api.assemblerDTO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.backend.ecommerce.api.assemblerDTO" />
+      <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.api.assemblerDTO.PagamentoModelDisassemblerDTOTest" />
+      <option name="METHOD_NAME" value="deveMapearDadosDoBoletoCorretamente" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PagamentoModelDisassemblerDTOTest.deveMapearDadosDoPixCorretamente" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.backend.ecommerce.api.assemblerDTO.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.backend.ecommerce.api.assemblerDTO" />
+      <option name="MAIN_CLASS_NAME" value="com.backend.ecommerce.api.assemblerDTO.PagamentoModelDisassemblerDTOTest" />
+      <option name="METHOD_NAME" value="deveMapearDadosDoPixCorretamente" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -83,51 +289,21 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.db: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="db" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="postgres" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Application.ecommerce" />
-      <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="Application.TesteCriptografia" />
+      <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest" />
+      <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveCriptografarDadosDoCartao" />
+      <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveMapearDadosDoBoletoCorretamente" />
+      <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveMapearDadosDoPixCorretamente" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.postgres: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.db: Compose Deployment" />
+        <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest" />
+        <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveMapearDadosDoBoletoCorretamente" />
+        <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveMapearDadosDoPixCorretamente" />
+        <item itemvalue="JUnit.PagamentoModelDisassemblerDTOTest.deveCriptografarDadosDoCartao" />
+        <item itemvalue="Application.TesteCriptografia" />
       </list>
     </recent_temporary>
   </component>
@@ -143,69 +319,12 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/domain/service/VendaProdutoService.java</url>
-          <line>73</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>109</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/backend/ecommerce/infrastructure/repository/service/storage/GoogleDriveFotoStorageService.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="36" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="pedidoSubTotalItens" />
+        <watch expression="pedidoSubTotalItens" language="JAVA" />
+        <watch expression="this" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

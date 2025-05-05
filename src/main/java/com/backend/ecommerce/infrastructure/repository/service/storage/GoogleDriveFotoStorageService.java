@@ -14,16 +14,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 
-@Primary
-@Service
+//@Primary
+//@Service
 public class GoogleDriveFotoStorageService implements FotoStorageService {
 
     @Autowired
-    private Drive driveService;
+    private Drive driveService; // Cliente da API do Google Drive para executar operações de armazenamento
 
     @Autowired
-    private StorageProperties storageProperties;
+    private StorageProperties storageProperties; // Propriedades customizadas de configuração da aplicação
 
+    /**
+     * Recupera um arquivo do Google Drive com base no nome do arquivo.
+     *
+     * @param nomeArquivo nome do arquivo a ser recuperado.
+     * @return InputStream do arquivo encontrado.
+     */
     @Override
     public InputStream recuperar(String nomeArquivo) {
         try {
@@ -37,41 +43,50 @@ public class GoogleDriveFotoStorageService implements FotoStorageService {
         }
     }
 
+    /**
+     * Armazena uma nova foto no Google Drive.
+     *
+     * @param novaFoto objeto contendo dados da foto a ser armazenada.
+     */
     @Override
     public void armazenar(NovaFoto novaFoto) {
         try {
             String caminhoArquivo = getCaminhoArquivo(novaFoto.getNomeAquivo());
 
-            // 1️⃣ Metadados do arquivo
+            // Define os metadados do arquivo, como o nome e diretório (pasta) de destino
             File fileMetadata = new File();
             fileMetadata.setName(caminhoArquivo);
 
-            // 2️⃣ Definindo a pasta de destino no Google Drive
+            // Cria ou localiza a pasta de destino no Google Drive
             String folderId = criarPasta(storageProperties.getDrive().getDiretorioFotos());
 
             if (folderId != null) {
                 fileMetadata.setParents(Collections.singletonList(folderId));
             }
 
-            // 3️⃣ Conteúdo do arquivo
+            // Define o conteúdo do arquivo (tipo MIME e stream de dados)
             InputStreamContent fileContent = new InputStreamContent(novaFoto.getContentType(), novaFoto.getInputStream());
 
-            // 4️⃣ Upload do arquivo
+            // Realiza o upload para o Google Drive
             File uploadedFile = driveService.files().create(fileMetadata, fileContent)
                     .setFields("id, webViewLink")
                     .execute();
 
-            // Log de sucesso
+            // Log para facilitar a verificação em ambiente de desenvolvimento
             System.out.println("Arquivo enviado com sucesso! ID do arquivo: " + uploadedFile.getId());
 
         } catch (Exception e) {
-            // Melhorando o tratamento de exceções
+            // Tratamento genérico de erro ao armazenar o arquivo
             System.err.println("Erro ao enviar o arquivo para o Google Drive: " + e.getMessage());
             throw new StorageException("Não foi possível enviar o arquivo para o Google Drive.", e);
         }
     }
 
-
+    /**
+     * Remove um arquivo do Google Drive com base no nome do arquivo.
+     *
+     * @param nomeArquivo nome do arquivo a ser removido.
+     */
     @Override
     public void remover(String nomeArquivo) {
         try {
@@ -84,34 +99,39 @@ public class GoogleDriveFotoStorageService implements FotoStorageService {
         }
     }
 
-    /*private String getCaminhoArquivo(String nomeArquivo) {
-        return String.format("%s/%s", storageProperties.getDrive().getDiretorioFotos(), nomeArquivo);
-    }*/
-
+    /**
+     * Busca o ID de um arquivo no Google Drive baseado em seu nome.
+     *
+     * @param nomeArquivo nome do arquivo.
+     * @return ID do arquivo, ou null se não encontrado.
+     */
     private String getFileId(String nomeArquivo) throws IOException {
         var result = driveService.files().list()
                 .setQ(String.format("name='%s'", nomeArquivo))
                 .setFields("files(id, name)")
                 .execute();
+
         if (result.getFiles().isEmpty()) {
             return null;
         }
+
         return result.getFiles().get(0).getId();
     }
 
     /**
-     * Verifica se a pasta existe no Google Drive. Se não existir, cria uma nova.
-     * @param folderName O nome da pasta a ser verificada/criada.
-     * @return O ID da pasta.
-     * @throws IOException Se houver erro na comunicação com o Google Drive.
+     * Cria uma pasta no Google Drive com o nome especificado, se ainda não existir.
+     *
+     * @param folderName nome da pasta.
+     * @return ID da pasta criada ou encontrada.
+     * @throws IOException em caso de falha de comunicação com o Google Drive.
      */
     private String criarPasta(String folderName) throws IOException {
-        // Verifica se a pasta existe
+        // Verifica se a pasta já existe
         FileList fileList = driveService.files().list()
                 .setQ("mimeType = 'application/vnd.google-apps.folder' and name = '" + folderName + "'")
                 .execute();
 
-        // Se a pasta não existir, cria uma nova
+        // Se não existir, cria uma nova pasta
         if (fileList.getFiles().isEmpty()) {
             File folderMetadata = new File();
             folderMetadata.setName(folderName);
@@ -119,20 +139,19 @@ public class GoogleDriveFotoStorageService implements FotoStorageService {
             File folder = driveService.files().create(folderMetadata).execute();
             return folder.getId();
         } else {
-            // Se a pasta já existir, retorna o ID da pasta
-            return fileList.getFiles().get(0).getId();
+            return fileList.getFiles().get(0).getId(); // Retorna o ID da pasta existente
         }
     }
 
     /**
-     * Método para obter o caminho ou nome do arquivo, pode ser implementado conforme sua lógica.
-     * @param nomeArquivo O nome original do arquivo.
-     * @return O caminho completo ou nome do arquivo para o Google Drive.
+     * Retorna o caminho lógico do arquivo.
+     * Atualmente, apenas retorna o nome, mas pode ser customizado para incluir subdiretórios.
+     *
+     * @param nomeArquivo nome base do arquivo.
+     * @return caminho completo do arquivo.
      */
     private String getCaminhoArquivo(String nomeArquivo) {
-        // Aqui você pode implementar a lógica para gerar um caminho para o arquivo,
-        // como concatenar o nome da pasta com o nome do arquivo ou algo do tipo.
-        return nomeArquivo;  // Exemplo simples, retornando o nome do arquivo diretamente.
+        return nomeArquivo;
     }
 
 }

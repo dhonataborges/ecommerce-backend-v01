@@ -1,15 +1,12 @@
 package com.backend.ecommerce.domain.service;
 
-import com.backend.ecommerce.domain.exception.FotoProdutoNaoEncontradaException;
 import com.backend.ecommerce.domain.exception.NegocioException;
 import com.backend.ecommerce.domain.exception.entidadeException.EntidadeEmUsoException;
-import com.backend.ecommerce.domain.exception.produtoException.ProdutoNaoEncontradoException;
+import com.backend.ecommerce.domain.exception.ProdutoNaoEncontradoException;
 import com.backend.ecommerce.domain.model.FotoProduto;
 import com.backend.ecommerce.domain.model.Produto;
 import com.backend.ecommerce.domain.repository.FotoProdutoRepository;
 import com.backend.ecommerce.domain.repository.ProdutoRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,12 +18,17 @@ import java.io.*;
 import java.net.URLConnection;
 import java.nio.file.Path;
 import java.util.Optional;
-
+/**
+ * Serviço responsável pela gestão de produtos. As funcionalidades incluem a criação de produtos,
+ * a atualização de produtos e fotos, a exclusão de produtos, e a busca de produtos pelo ID.
+ */
 @Service
 public class ProdutoService {
 
+    // Mensagens de erro
     private static final String MSG_PRODUTO_EM_USO = "Produto de código %d não pode ser removido, pois está em uso";
 
+    // Repositórios necessários para interação com o banco de dados
     @Autowired
     private ProdutoRepository produtoRepository;
 
@@ -39,25 +41,32 @@ public class ProdutoService {
     @Autowired
     private FotoProdutoRepository fotoProdutoRepository;
 
+    /**
+     * Cria uma foto genérica associada a um produto. A foto é salva no banco de dados e no armazenamento de fotos.
+     *
+     * @param produto O produto ao qual a foto será associada.
+     * @return A FotoProduto recém-criada.
+     * @throws IOException Se ocorrer um erro ao manipular o arquivo da foto.
+     */
     @Transactional
     public FotoProduto criarFotoGenerica(Produto produto) throws IOException {
 
         Long produtoId = produto.getId(); // Obtém o ID do produto associado à foto
 
-        produto = buscarOuFalhar(produtoId);
+        produto = buscarOuFalhar(produtoId);  // Busca o produto no banco de dados
 
-        // Caminho do arquivo
+        // Caminho do arquivo da foto genérica
         Path caminho = Path.of("img/image-generica.jpeg");
 
         FotoProduto foto = new FotoProduto();
 
-        // Capturando informações sobre o arquivo
+        // Captura as informações sobre o arquivo da foto
         File arquivo = caminho.toFile();
 
-        String nomeNovoArquivo = fotoStorage.gerarNomeArquivo(arquivo.getName()); // Gera um novo nome para o arquivo da foto
+        String nomeNovoArquivo = fotoStorage.gerarNomeArquivo(arquivo.getName()); // Gera um nome único para o arquivo da foto
 
-        FileInputStream inputStream = new FileInputStream(arquivo);
-        String contentType = URLConnection.guessContentTypeFromStream(inputStream);
+        FileInputStream inputStream = new FileInputStream(arquivo); // Cria o InputStream para ler os dados do arquivo
+        String contentType = URLConnection.guessContentTypeFromStream(inputStream); // Obtém o tipo de conteúdo (MIME type)
 
         // Verificação se o caminho e contentType estão disponíveis
         if (caminho != null) {
@@ -67,149 +76,139 @@ public class ProdutoService {
             foto.setNomeArquivo(nomeNovoArquivo);
 
             // Se o contentType for nulo, define um valor padrão
-            if (contentType != null) {
-                foto.setContentType(contentType);
-            } else {
-                foto.setContentType("image/jpeg");
-            }
+            foto.setContentType(contentType != null ? contentType : "image/jpeg");
         } else {
             throw new FileNotFoundException("Caminho do arquivo não especificado!");
         }
 
         // Salva a nova foto no banco de dados
         foto = produtoRepository.save(foto);
-        produtoRepository.flush(); // Realiza o flush para garantir que a foto seja persistida no banco
+        produtoRepository.flush();  // Garante que a foto seja persistida no banco de dados
 
-        // Cria um objeto NovaFoto para armazenar os dados do arquivo de foto a ser armazenado
+        // Cria o objeto NovaFoto para armazenar a foto no sistema de armazenamento
         FotoStorageService.NovaFoto novaFoto = FotoStorageService.NovaFoto.builder()
-                .nomeAquivo(foto.getNomeArquivo()) // Nome do arquivo da nova foto
-                .inputStream(inputStream) // InputStream contendo os dados do arquivo
+                .nomeAquivo(foto.getNomeArquivo())
+                .inputStream(inputStream)
                 .build();
 
-        // Armazenamento de fotos, armazena a foto generica
+        // Armazena a foto genérica no armazenamento
         fotoStorage.armazenar(novaFoto);
 
-        // Retorna o objeto FotoProduto recém-salvo
-        return foto;
+        return foto;  // Retorna a foto recém-criada e salva
     }
 
-
+    /**
+     * Salva um novo produto no banco de dados. Se o produto não tiver uma foto associada, cria uma foto genérica.
+     *
+     * @param produto O produto a ser salvo.
+     * @return O produto salvo com a foto associada.
+     * @throws IOException Se ocorrer um erro ao manipular a foto do produto.
+     */
     @Transactional
     public Produto salvar(@Valid Produto produto) throws IOException {
 
-        // Salva o produto primeiro para garantir que ele tenha um ID atribuído
-        Produto cod = produtoRepository.findByCodProd(produto.getCodProd());
-
-        // Verifica se o produto já existe
+        // Verifica se o produto já existe no banco de dados pelo código
+        Produto cod = produtoRepository.findByCodProd(produto.getCodigo());
         if (cod != null) {
-            throw new NegocioException("Produto com o código " + produto.getCodProd() + " já está cadastrado!");
+            throw new NegocioException("Produto com o código " + produto.getCodigo() + " já está cadastrado!");
         }
 
-            produto = produtoRepository.save(produto);
-            produtoRepository.flush();  // Garante que o produto seja persistido no banco
-
+        // Salva o produto e garante que o produto tenha um ID atribuído
+        produto = produtoRepository.save(produto);
+        produtoRepository.flush();
 
         FotoProduto foto = null;
 
-
-        // Verifica se o produto precisa de uma foto (se a foto não foi salva ainda)
+        // Se o produto não tem uma foto associada, cria uma foto genérica
         if (produto.getFotoProduto() == null) {
-
-            // Cria e associa uma foto genérica ao produto
             foto = criarFotoGenerica(produto);
         }
 
-        // Salva o produto novamente após associar a foto
+        // Associa a foto ao produto e salva o produto novamente
         produto.setFotoProduto(foto);
         return produtoRepository.save(produto);
-
     }
 
+    /**
+     * Atualiza as informações de um produto e sua foto associada. Se a foto já existir, ela será atualizada.
+     *
+     * @param produto O produto a ser atualizado.
+     * @return O produto atualizado.
+     * @throws IOException Se ocorrer um erro ao manipular a foto do produto.
+     */
     @Transactional
-    public Produto atualizar(@Valid Produto produto) throws IOException {  // Método que recebe um objeto Produto válido como parâmetro.
+    public Produto atualizar(@Valid Produto produto) throws IOException {
 
-        Long fotoId = produto.getId();  // O código pega o ID do Produto. Aqui, a suposição é que o ID do Produto seja o ID da FotoProduto.
-        // Se isso não for o caso, o ID da foto deve ser obtido de outra forma.
+        Long fotoId = produto.getId();  // Obtém o ID do Produto (presumido ser o mesmo da FotoProduto)
 
-        // Busca a FotoProduto associada ao Produto pelo ID da foto.
-        Optional<FotoProduto> fotoBanco = produtoRepository.findFotoById(fotoId);  // Obtém a FotoProduto a partir do repositório.
+        // Busca a FotoProduto associada ao Produto
+        Optional<FotoProduto> fotoBanco = produtoRepository.findFotoById(fotoId);
+        FotoProduto foto = fotoBanco.get();  // Lança exceção se a foto não for encontrada
 
-        // A partir de 'fotoBanco', obtemos o objeto FotoProduto, usando o método get().
-        FotoProduto foto = fotoBanco.get();  // A linha pode lançar uma exceção caso o valor de fotoBanco seja vazio, pois não é verificado.
-
-        // Verifica se o FotoProduto foi encontrado no banco de dados
-        if (fotoBanco.isPresent()) {  // Se a foto existe no banco, a lógica para atualizar é executada.
-
-            // Atualiza as informações da FotoProduto com os dados mais recentes
-            foto.setProduto(produto);  // Associa a foto ao Produto
-            foto.setNomeArquivo(fotoBanco.get().getNomeArquivo());  // Atualiza o nome do arquivo
-            foto.setDescricao(fotoBanco.get().getDescricao());  // Atualiza a descrição da foto
-            foto.setContentType(fotoBanco.get().getContentType());  // Atualiza o tipo de conteúdo da foto (por exemplo, "image/jpeg")
-            foto.setTamanho(fotoBanco.get().getTamanho());  // Atualiza o tamanho da foto
+        if (fotoBanco.isPresent()) {
+            // Atualiza as informações da foto com as mais recentes
+            foto.setProduto(produto);
+            foto.setNomeArquivo(fotoBanco.get().getNomeArquivo());
+            foto.setDescricao(fotoBanco.get().getDescricao());
+            foto.setContentType(fotoBanco.get().getContentType());
+            foto.setTamanho(fotoBanco.get().getTamanho());
 
             // Salva a FotoProduto atualizada no banco de dados
-            fotoProdutoRepository.save(foto);  // O repositório FotoProduto é usado para salvar a foto no banco
+            fotoProdutoRepository.save(foto);
 
-            // Associa a FotoProduto atualizada ao Produto
-            produto.setFotoProduto(foto);  // Aqui, a FotoProduto é associada ao Produto para que seja salva junto com o Produto
+            // Associa a foto ao produto
+            produto.setFotoProduto(foto);
         }
 
-        produto.setFotoProduto(foto);  // Garante que o Produto tenha a FotoProduto associada, caso a foto já tenha sido associada antes
-
-        // Salva o Produto no banco de dados com a foto associada
-        return produtoRepository.save(produto);  // O Produto, agora com a foto atualizada, é salvo no banco de dados
+        // Salva o produto no banco de dados com a foto atualizada
+        return produtoRepository.save(produto);
     }
 
-
+    /**
+     * Exclui um produto e sua foto associada do banco de dados e do armazenamento de fotos.
+     *
+     * @param produtoId O ID do produto a ser excluído.
+     */
     @Transactional
     public void excluir(Long produtoId) {
         try {
-            // A variável 'fotoId' recebe o mesmo valor de 'produtoId', presumindo que o ID do produto seja o mesmo que o ID da FotoProduto.
             Long fotoId = produtoId;
 
-            // Busca a FotoProduto associada ao produto pelo ID. O repositório de produtos tem um método para encontrar a foto pelo ID do produto.
+            // Busca a foto associada ao produto
             Optional<FotoProduto> fotoBanco = produtoRepository.findFotoById(fotoId);
-
-            // 'fotoBanco' pode ser vazio. Aqui, obtemos o objeto FotoProduto de dentro de 'fotoBanco' (que é um Optional), usando o método 'get()'.
-            // Esse método lança uma exceção se o valor não estiver presente.
             FotoProduto foto = fotoBanco.get();
 
-            // Verifica se a foto foi encontrada no banco de dados.
             if (fotoBanco.isPresent()) {
-                // Se a foto foi encontrada, ela é deletada usando o repositório 'fotoProdutoRepository'.
+                // Exclui a foto do banco de dados
                 fotoProdutoRepository.delete(foto);
-
-                // 'flush()' força a sincronização da operação de exclusão com o banco de dados.
                 fotoProdutoRepository.flush();
 
-                // Remoção da foto associada ao produto do sistema de arquivos ou armazenamento (presumivelmente um sistema de arquivos ou S3).
+                // Remove a foto do armazenamento (presumivelmente um sistema de arquivos ou S3)
                 fotoStorage.remover(foto.getNomeArquivo());
             }
 
-            // Após a remoção da foto, o produto também é excluído utilizando o repositório 'produtoRepository'.
+            // Exclui o produto do banco de dados
             produtoRepository.deleteById(produtoId);
-
-            // 'flush()' novamente para garantir que a exclusão do produto seja confirmada no banco de dados.
             produtoRepository.flush();
 
         } catch (EmptyResultDataAccessException e) {
-            // Se não encontrar o produto no banco de dados (ou a foto), lança uma exceção personalizada.
             throw new ProdutoNaoEncontradoException(produtoId);
 
         } catch (DataIntegrityViolationException e) {
-            // Se houver uma violação de integridade no banco de dados (por exemplo, se o produto estiver em uso por outra entidade), lança uma exceção.
             throw new EntidadeEmUsoException(String.format(MSG_PRODUTO_EM_USO, produtoId));
 
         } catch (Exception e) {
-            // Caso haja algum erro inesperado (não tratado pelas exceções acima), lança uma exceção genérica.
             throw new RuntimeException("Erro ao tentar excluir o produto", e);
         }
     }
 
+    /**
+     * Busca um produto pelo ID e lança uma exceção se o produto não for encontrado.
+     *
+     * @param produtoId O ID do produto a ser buscado.
+     * @return O produto encontrado.
+     */
     public Produto buscarOuFalhar(Long produtoId) {
         return produtoRepository.findById(produtoId).orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
     }
-
 }
-
-

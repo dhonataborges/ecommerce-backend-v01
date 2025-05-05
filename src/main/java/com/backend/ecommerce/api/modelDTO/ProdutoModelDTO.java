@@ -16,7 +16,8 @@ public class ProdutoModelDTO {
     private Long id;
     private String codProd;
     private String nomeProd;
-    private String descricao;
+    private String marca;
+    private String descricaoProduto;
     private Integer categoria;
     private String descriCatedoria;
     private FotoProdutoModelDTO foto;

@@ -14,22 +14,13 @@ import java.math.BigDecimal;
 @Setter
 public class ProdutoInputDTO {
 
-    @Column(name = "cod_prod")
     @Size(max = 6)
     private String codProd;
-
-    @Column(name = "nome_prod")
     private String nomeProd;
-
-    @Column(name = "descricao")
-    private String descricao;
-
-    @JoinColumn(name = "categoria")
+    private String marca;
+    private String descricaoProduto;
     private Integer categoria;
-
-    @JoinColumn(name = "descri_categoria")
     private String descriCatedoria;
-
     private FotoProdutoInputDTO foto;
 
 }

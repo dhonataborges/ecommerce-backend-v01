@@ -1,18 +1,19 @@
 package com.backend.ecommerce.domain.service;
 
 
-import com.backend.ecommerce.domain.exception.produtoException.ProdutoNaoEncontradoException;
+import com.backend.ecommerce.domain.exception.ProdutoNaoEncontradoException;
 import com.backend.ecommerce.domain.model.FotoProduto;
-import com.backend.ecommerce.domain.model.Produto;
 import com.backend.ecommerce.domain.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
-
+/**
+ * Serviço responsável por gerenciar a associação e o armazenamento de fotos de produtos no catálogo.
+ * Realiza operações de substituição, exclusão lógica no banco de dados e manipulação do armazenamento físico.
+ */
 @Service
 public class CatalogoFotoProdutoService {
 
@@ -22,61 +23,71 @@ public class CatalogoFotoProdutoService {
     @Autowired
     private FotoStorageService fotoStorage;
 
+    /**
+     * Salva ou substitui uma foto associada a um produto.
+     * Se já existir uma foto vinculada ao produto, a foto anterior é removida do banco e do armazenamento.
+     *
+     * @param foto         Instância contendo os metadados da nova foto.
+     * @param dadosArquivo Conteúdo da foto como fluxo de dados.
+     * @return A instância da foto persistida.
+     */
     @Transactional
     public FotoProduto salvar(FotoProduto foto, InputStream dadosArquivo) {
+        Long produtoId = foto.getProduto().getId();
 
-        Long produtoId = foto.getProduto().getId(); // Obtém o ID do produto associado à foto
+        String nomeNovoArquivo = fotoStorage.gerarNomeArquivo(foto.getNomeArquivo());
+        String nomeArquivoExistente = null;
 
-        String nomeNovoArquivo = fotoStorage.gerarNomeArquivo(foto.getNomeArquivo()); // Gera um novo nome para o arquivo da foto
-        String nomeArquivoExistente = null; // Variável para armazenar o nome do arquivo antigo, se houver
+        Optional<FotoProduto> fotoExistente = produtoRepository.findFotoDoProdutoById(produtoId);
 
-        // Verifica se já existe uma foto associada ao produto no banco de dados
-        Optional<FotoProduto> fotoExistente = produtoRepository.findProdutoById(produtoId);
-
-        // Se já existir uma foto para este produto, realiza a exclusão da foto anterior
+        // Remove a foto anterior do banco de dados e armazena seu nome para remoção física
         if (fotoExistente.isPresent()) {
-            nomeArquivoExistente = fotoExistente.get().getNomeArquivo(); // Obtém o nome do arquivo da foto existente
-            // Deleta a foto existente associada ao produto
+            nomeArquivoExistente = fotoExistente.get().getNomeArquivo();
             produtoRepository.delete(fotoExistente.get());
-            produtoRepository.flush(); // Realiza o flush para garantir que a exclusão seja persistida no banco
+            produtoRepository.flush();
         }
 
-        // Atribui o nome do novo arquivo à foto
+        // Atualiza o nome do novo arquivo e persiste a nova foto no banco de dados
         foto.setNomeArquivo(nomeNovoArquivo);
-        // Salva a nova foto no banco de dados
         foto = produtoRepository.save(foto);
-        produtoRepository.flush(); // Realiza o flush para garantir que a foto seja persistida no banco
+        produtoRepository.flush();
 
-        // Cria um objeto NovaFoto para armazenar os dados do arquivo de foto a ser armazenado
+        // Define os dados da nova foto para armazenamento físico
         FotoStorageService.NovaFoto novaFoto = FotoStorageService.NovaFoto.builder()
-                .nomeAquivo(foto.getNomeArquivo()) // Nome do arquivo da nova foto
-                .inputStream(dadosArquivo) // InputStream contendo os dados do arquivo
+                .nomeAquivo(foto.getNomeArquivo())
+                .inputStream(dadosArquivo)
                 .build();
 
-        // Substitui o arquivo existente (se houver) no armazenamento de fotos, caso contrário, armazena a nova foto
+        // Substitui o arquivo anterior, se existente, no sistema de arquivos
         fotoStorage.substituir(nomeArquivoExistente, novaFoto);
 
-        // Retorna o objeto FotoProduto recém-salvo
         return foto;
     }
 
+    /**
+     * Busca uma foto de produto pelo seu identificador ou lança exceção se não encontrada.
+     *
+     * @param produtoId Identificador do produto.
+     * @return Foto associada ao produto.
+     * @throws ProdutoNaoEncontradoException se nenhuma foto estiver associada ao produto.
+     */
     public FotoProduto buscarOuFalhar(Long produtoId) {
-        // Tenta buscar a foto associada ao produto, se não encontrar, lança uma exceção
         return produtoRepository.findFotoById(produtoId)
                 .orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
     }
 
+    /**
+     * Exclui a foto associada a um produto, removendo tanto o registro do banco de dados quanto o arquivo físico.
+     *
+     * @param produtoId Identificador do produto cuja foto será excluída.
+     */
     @Transactional
     public void excluir(Long produtoId) {
-        // Busca a foto associada ao produto, ou lança uma exceção se não encontrar
         FotoProduto foto = buscarOuFalhar(produtoId);
 
-        // Deleta a foto associada ao produto no banco de dados
         produtoRepository.delete(foto);
-        produtoRepository.flush(); // Realiza o flush para garantir que a exclusão seja persistida no banco
+        produtoRepository.flush();
 
-        // Remove o arquivo de foto do armazenamento de arquivos
         fotoStorage.remover(foto.getNomeArquivo());
     }
-
 }
