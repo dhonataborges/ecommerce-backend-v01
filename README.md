@@ -95,4 +95,5 @@ Os testes estão localizados em `resources/db/testdata` e provavelmente incluem 
 - Verifique o arquivo `.json` presente na pasta `resources` para possíveis configurações iniciais.
 
 🚧 Projeto em Desenvolvimento
+
 Este projeto ainda está em desenvolvimento ativo. Funcionalidades podem estar incompletas ou sujeitas a alterações frequentes.
